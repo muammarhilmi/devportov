@@ -28,7 +28,7 @@ export const portfolioData = {
     },
     {
       title: "Nail Beauty",
-      tech: ["Flutter", "Dart"],
+      tech: ["Flutter", "Dart","GetX pattern"],
       desc: "Desain aplikasi Flutter, analisis bentuk kuku, dan sistem rekomendasi desain."
     }
   ],
