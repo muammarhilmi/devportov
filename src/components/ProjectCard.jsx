@@ -49,6 +49,18 @@ const ProjectCard = ({ project, index }) => {
           >
             <div className="px-6 pb-6 pt-2 border-t border-zinc-100 dark:border-zinc-900/50 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
               <p>{project.desc}</p>
+              {project.images && project.images.length > 0 && (
+                <div className="mt-4 flex flex-col gap-4">
+                  {project.images.map((img, idx) => (
+                    <img 
+                      key={idx} 
+                      src={img} 
+                      alt={`${project.title} screenshot ${idx + 1}`} 
+                      className="w-full h-auto rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover shadow-sm" 
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </motion.div>
         )}

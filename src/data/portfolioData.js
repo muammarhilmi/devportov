@@ -19,12 +19,14 @@ export const portfolioData = {
     {
       title: "MorseKu",
       tech: ["Python", "Flask"],
-      desc: "Mengembangkan aplikasi penerjemah sandi Morse berbasis Flask, translasi teks-ke-Morse, fitur audio, copy text, dan prediksi karakter."
+      desc: "Mengembangkan aplikasi penerjemah sandi Morse berbasis Flask, translasi teks-ke-Morse, fitur audio, copy text, dan prediksi karakter.",
+      images: ["/images/morseku.png"]
     },
     {
       title: "Time Rush 3D",
       tech: ["Unity"],
-      desc: "Membuat game racing berbasis Unity, sistem timer, speed boost, scoring, dan level."
+      desc: "Membuat game racing berbasis Unity, sistem timer, speed boost, scoring, dan level.",
+      images: ["/images/gamemobil.png"]
     },
     {
       title: "Nail Beauty",
