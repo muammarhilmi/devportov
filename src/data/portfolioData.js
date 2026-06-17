@@ -23,15 +23,25 @@ export const portfolioData = {
       images: ["/images/morseku.png"]
     },
     {
-      title: "Time Rush 3D",
-      tech: ["Unity"],
-      desc: "Membuat game racing berbasis Unity, sistem timer, speed boost, scoring, dan level.",
-      images: ["/images/gamemobil.png"]
+      title: "Web Profil UMKM Brono",
+      tech: ["UI/UX Design", "Web Design"],
+      desc: "Merancang antarmuka pengguna (UI/UX) yang estetik dan interaktif untuk profil web UMKM Brono. Berfokus pada visualisasi katalog brownies fudgy premium yang menggugah selera dan pengalaman navigasi yang mulus guna mendukung branding dan daya tarik pelanggan.",
+      images: [
+        "/images/brono1.png",
+        "/images/brono2.png",
+        "/images/brono3.png"
+      ]
     },
     {
       title: "Nail Beauty",
       tech: ["Flutter", "Dart"],
       desc: "Desain aplikasi Flutter, analisis bentuk kuku, dan sistem rekomendasi desain."
+    },
+    {
+      title: "Time Rush 3D",
+      tech: ["Unity"],
+      desc: "Membuat game racing berbasis Unity, sistem timer, speed boost, scoring, dan level.",
+      images: ["/images/coming_soon.svg"]
     }
   ],
   skills: ["Problem Solving", "Komunikasi", "Ketelitian", "Kerja Sama Tim", "Manajemen Waktu"]

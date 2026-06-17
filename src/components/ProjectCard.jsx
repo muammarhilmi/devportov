@@ -1,9 +1,24 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const ProjectCard = ({ project, index }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = (e) => {
+    e.stopPropagation();
+    if (project.images) {
+      setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+    }
+  };
+
+  const prevImage = (e) => {
+    e.stopPropagation();
+    if (project.images) {
+      setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+    }
+  };
 
   return (
     <motion.div
@@ -50,15 +65,71 @@ const ProjectCard = ({ project, index }) => {
             <div className="px-6 pb-6 pt-2 border-t border-zinc-100 dark:border-zinc-900/50 text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
               <p>{project.desc}</p>
               {project.images && project.images.length > 0 && (
-                <div className="mt-4 flex flex-col gap-4">
-                  {project.images.map((img, idx) => (
+                <div className="mt-4">
+                  {project.images.length === 1 ? (
                     <img 
-                      key={idx} 
-                      src={img} 
-                      alt={`${project.title} screenshot ${idx + 1}`} 
-                      className="w-full h-auto rounded-lg border border-zinc-200 dark:border-zinc-800 object-cover shadow-sm" 
+                      src={project.images[0]} 
+                      alt={`${project.title} screenshot`} 
+                      className={`w-full h-auto rounded-lg object-cover shadow-sm ${
+                        project.images[0].endsWith('.svg') 
+                          ? 'dark:invert border-none' 
+                          : 'border border-zinc-200 dark:border-zinc-800'
+                      }`} 
                     />
-                  ))}
+                  ) : (
+                    <div className="relative group">
+                      <div className="overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-sm relative">
+                        <motion.div 
+                          className="flex"
+                          animate={{ x: `-${currentImageIndex * 100}%` }}
+                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        >
+                          {project.images.map((img, idx) => (
+                            <img 
+                              key={idx} 
+                              src={img} 
+                              alt={`${project.title} screenshot ${idx + 1}`} 
+                              className={`w-full flex-shrink-0 h-auto object-cover ${
+                                img.endsWith('.svg') ? 'dark:invert' : ''
+                              }`} 
+                            />
+                          ))}
+                        </motion.div>
+                        
+                        {/* Navigation Arrows */}
+                        <button 
+                          onClick={prevImage}
+                          className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 dark:bg-black/50 text-zinc-800 dark:text-zinc-200 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white dark:hover:bg-black"
+                        >
+                          <ChevronLeft size={20} />
+                        </button>
+                        <button 
+                          onClick={nextImage}
+                          className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 dark:bg-black/50 text-zinc-800 dark:text-zinc-200 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white dark:hover:bg-black"
+                        >
+                          <ChevronRight size={20} />
+                        </button>
+                      </div>
+                      
+                      {/* Dots Indicator */}
+                      <div className="flex justify-center gap-2 mt-3">
+                        {project.images.map((_, idx) => (
+                          <button
+                            key={idx}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setCurrentImageIndex(idx);
+                            }}
+                            className={`w-2 h-2 rounded-full transition-colors ${
+                              currentImageIndex === idx 
+                                ? 'bg-zinc-800 dark:bg-zinc-200' 
+                                : 'bg-zinc-300 dark:bg-zinc-700'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
